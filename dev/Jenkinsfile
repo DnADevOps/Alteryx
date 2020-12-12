@@ -8,7 +8,7 @@ pipeline {
                 SOPS = 'SOP-1234,SOP-1235'      
                 Frequency = 'Daily'
                 EmailIds = 'DevOpsDemo825@gmail.com'
-                Activities = 'Activity 1: Review of Privileged User Accounts,Activity 4: Review of Program Files and Configurations,Activity 8: Verify System is in the CMDB'
+                Activities = '1. Review of Privileged User Accounts,4. Review of Program Files and Configurations,8. Verify System is in the CMDB'
               }
     
   stages {
