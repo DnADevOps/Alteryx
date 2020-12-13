@@ -9,6 +9,9 @@ pipeline {
                 Frequency = 'Daily'
                 EmailIds = 'DevOpsDemo825@gmail.com'
                 Activities = '1. Review of Privileged User Accounts,4. Review of Program Files and Configurations,8. Verify System is in the CMDB'
+                GitOrg='git@github.com:DnADevOps/'
+                GitCredentials='DevOpsDemo825'
+                GitBranch='main                
               }
     
   stages {
