@@ -4,7 +4,7 @@ pipeline {
   environment {
                 Maintenance = 'System_Maintenance'
                 SystemName = 'Alteryx'
-                Environment = 'test'
+                EnvironmentName = 'test'
                 Locations = 'Seattle WA,San Jose CA'
                 SOPS = 'SOP-1234,SOP-1235'      
                 Frequency = 'Daily'
@@ -23,6 +23,7 @@ pipeline {
       {
         sh '''#!/bin/bash
               echo " The System is ${SystemName}"
+              echo " The System is ${EnvironmentName}"              
               echo " The Locations are ${Locations}"
               echo " The SOPS are ${SOPS}"        
               echo " The Frequency is ${Frequency}"
@@ -32,6 +33,9 @@ pipeline {
               if [ -z "${SystemName}" ]; then
                 echo "Environment variable SystemName has not been set or passed"
                 exit 1
+              elif [ -z "${EnvironmentName}" ]; then
+                echo "Environment variable EnvironmentName has not been set or passed"
+                exit 1              
               elif [ -z "${Locations}" ]; then
                 echo "Environment variable Locations has not been set or passed"
                 exit 1
@@ -68,12 +72,12 @@ pipeline {
     {
      steps {
              activity_list = ${Activities}.split(',')
-             echo "${SystemName}/${Maintenance}/${Environment}"
+             echo "${SystemName}/${Maintenance}/${EnvironmentName}"
              script
              {
                activity_list.each() 
                { 
-                build job: "${SystemName}/${Maintenance}/${Environment}/${it}"; 
+                build job: "${SystemName}/${Maintenance}/${EnvironmentName}/${it}"; 
                }
              }
            }
