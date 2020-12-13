@@ -64,8 +64,9 @@ pipeline {
     stage('Run All Jobs') {
       steps {
              activity_list = ${Activities}.split(',')
-             for(activity in activity_list) { 
-               build job: "${SystemName}/${Maintenance}/${Environment}/${activity}'; 
+             echo "${SystemName}/${Maintenance}/${Environment}"
+             activity_list.each() { 
+               build job: "${SystemName}/${Maintenance}/${Environment}/${it}"; 
              }
       }
       post {
