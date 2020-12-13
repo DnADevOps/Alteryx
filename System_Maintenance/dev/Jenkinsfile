@@ -65,9 +65,14 @@ pipeline {
       steps {
              activity_list = ${Activities}.split(',')
              echo "${SystemName}/${Maintenance}/${Environment}"
-             activity_list.each() { 
-               build job: "${SystemName}/${Maintenance}/${Environment}/${it}"; 
+             script
+             {
+               activity_list.each() 
+               { 
+                build job: "${SystemName}/${Maintenance}/${Environment}/${it}"; 
+               }
              }
+            }
       }
       post {
             failure {
