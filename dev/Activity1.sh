@@ -1,2 +1,2 @@
 #!/bin/bash
-Hello I am Activty 1
+echo Hello I am Activty 1
