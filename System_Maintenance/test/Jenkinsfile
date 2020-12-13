@@ -2,6 +2,7 @@ pipeline {
   agent any
   
   environment {
+                Maintenance = "'System_Maintenance'"
                 SystemName = "'Alteryx'"
                 Environment = ''
                 Locations = 'Seattle WA,San Jose CA'
@@ -60,24 +61,17 @@ pipeline {
                     }
            }
     }
-    stage('Build') {
+    stage('Run All Jobs') {
       steps {
-        sh '''#!/bin/bash
-              #cd ${SystemName}
-              pwd
-              ls -ltr
-              cd ..
-              #git checkout -b main
-              #git remote add origin git@github.com:DevOpsDemo825/System_Maintenance.git
-              #git add .
-              #git commit -m "Committed On `date`"
-              #git push -u origin main
-           '''
+             activity_list = ${Activities}.split(',')
+             for(activity in activity_list) { 
+               build job: "${SystemName}/${Maintenance}/${Environment}/${activity}'; 
+             }
       }
       post {
             failure {
                      script {
-                             echo "Build failure"
+                             echo "Run All Jobs failure"
                              currentBuild.result = 'FAILURE'
                              notifyBuild(currentBuild.result)
                             }           
