@@ -71,7 +71,7 @@ pipeline {
     stage('Run All Jobs') 
     {
      steps {
-             activity_list = ${Activities}.split(',')
+             activity_list = Activities.split(',')
              echo "${SystemName}/${Maintenance}/${EnvironmentName}"
              script
              {
