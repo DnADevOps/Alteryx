@@ -15,9 +15,12 @@ pipeline {
                 GitBranch='main'                
               }
     
-  stages {
-    stage('Validation') {
-      steps {
+  stages 
+  {
+    stage('Validation') 
+    {
+      steps 
+      {
         sh '''#!/bin/bash
               echo " The System is ${SystemName}"
               echo " The Locations are ${Locations}"
@@ -61,8 +64,9 @@ pipeline {
                     }
            }
     }
-    stage('Run All Jobs') {
-      steps {
+    stage('Run All Jobs') 
+    {
+     steps {
              activity_list = ${Activities}.split(',')
              echo "${SystemName}/${Maintenance}/${Environment}"
              script
@@ -72,8 +76,7 @@ pipeline {
                 build job: "${SystemName}/${Maintenance}/${Environment}/${it}"; 
                }
              }
-            }
-      }
+           }
       post {
             failure {
                      script {
@@ -83,7 +86,7 @@ pipeline {
                             }           
                     }
            }
-    }    
+    }
   }
 }
 // Function to  send notification email
