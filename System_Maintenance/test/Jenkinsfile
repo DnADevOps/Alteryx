@@ -97,10 +97,11 @@ pipeline {
              sh '''
                    pwd
                    ls -altr
-                   BKP_IFS=IFS
-                   IFS=","
-                   cp `find ../ -name *.rpt | sed -e "s/^.*$/'&'/"` .
-                   IFS=BKP_IFS 
+                   #BKP_IFS=IFS
+                   #IFS=","
+                   #cp `find ../ -name *.rpt | sed -e "s/^.*$/'&'/"` .
+                   cp ../*/System_Maintenance/*/*.rpt .
+                   #IFS=BKP_IFS 
                    ls -ltr
                    git config --list
                    git add .
