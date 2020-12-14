@@ -91,69 +91,7 @@ pipeline {
                     }
            }
     }
-    stage('Commit Results to Repo') 
-    {
-     steps {
-             sh '''
-                   pwd
-                   ls -altr
-                   #BKP_IFS=IFS
-                   #IFS=","
-                   #cp `find ../ -name *.rpt | sed -e "s/^.*$/'&'/"` .
-                   cp ../*/System_Maintenance/*/*.rpt .
-                   #IFS=BKP_IFS 
-                   ls -ltr
-                   git config --list
-                   git add .
-                   git commit -m "`date` commit"
-                   git branch -M main
-                   git push -u origin main
-                '''
-           }
-      post {
-            failure {
-                     script {
-                             echo "Commit Results to Repo stage failure"
-                             currentBuild.result = 'FAILURE'
-                             notifyBuild(currentBuild.result)
-                            }           
-                    }
-           }
-    } 
-    stage('Save Build in Artifactory') 
-    {
-     steps {
-            steps{
-                rtServer (
-                    id: 'Artifactory-1',
-                    url: 'http://54.160.21.79:8082//artifactory',
-                    username: 'admin',
-                    password: 'Devops2020',
-                    timeout: 300
-                )
-                rtUpload (
-                    serverId: 'Artifactory-1',
-                    spec: '''{
-                          "files": [
-                            {
-                              "pattern": "$WORKSPACE",
-                              "target": "RDM_OBIEE/Test/${buildNumber}/"
-                            }
-                          ]
-                    }'''
-                )
-            }
-           }
-      post {
-            failure {
-                     script {
-                             echo "Save Build in Artifactory stage failure"
-                             currentBuild.result = 'FAILURE'
-                             notifyBuild(currentBuild.result)
-                            }           
-                    }
-           }
-    }     
+  
     
   }
 }
