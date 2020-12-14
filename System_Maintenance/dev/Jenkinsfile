@@ -6,7 +6,7 @@ pipeline {
                 SystemName = 'Alteryx'
                 EnvironmentName = 'dev'
                 Locations = 'Seattle WA,San Jose CA'
-                SOPS = 'SOP-1234,SOP-1235'      
+                SOPS = 'SOP-1234'      
                 Frequency = 'Daily'
                 EmailIds = 'DevOpsDemo825@gmail.com'
                 Activities = '1. Review of Privileged User Accounts,4. Review of Program Files and Configurations,8. Verify System is in the CMDB'
@@ -97,6 +97,8 @@ pipeline {
              sh '''
                    pwd
                    ls -altr
+                   cp `find ../ -name *.log` .
+                   ls -ltr
                    git config --list
                    git add .
                    git commit -m "`date` commit"
