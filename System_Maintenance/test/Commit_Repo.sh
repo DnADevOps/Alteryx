@@ -1,4 +1,4 @@
-cd ${WORKSPACE}
+cd "${WORKSPACE}"
 pwd
 ls -ltr
 git config --list
