@@ -5,7 +5,7 @@ environment {
                 Maintenance = 'System_Maintenance'
                 PlatformName = 'Alteryx'
                 ReRun = 'Yes'
-                BuildNumber = '1212'
+                BuildNumber = '1121'
                 EnvironmentName = 'dev'
                 Frequency = 'Daily'
                 Locations = 'Seattle WA,San Jose CA'
@@ -123,9 +123,9 @@ environment {
                                                "target": "${PlatformName}/${env.BUILD_NUMBER}/"
                                               }
                                             ]
-                    }'''
-                    buildName: 'holyFrog',
-                    buildNumber: ${env.BUILD_NUMBER}
+                    }''',
+                    buildName: "holyFrog${env.BUILD_NUMBER}",
+                    buildNumber: "${env.BUILD_NUMBER}"
                 )
                }
              }
