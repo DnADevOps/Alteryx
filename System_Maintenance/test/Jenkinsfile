@@ -1,14 +1,19 @@
 pipeline {
   agent any
-  
-  environment {
+
+environment {
                 Maintenance = 'System_Maintenance'
-                SystemName = 'Alteryx'
+                PlatformName = 'Alteryx'
+                ReRun = <ReRun>
+                BuildNumber = BuildNumber>
                 EnvironmentName = 'test'
+                Frequency = 'Daily'
                 Locations = 'Seattle WA,San Jose CA'
                 SOPS = 'SOP-1234,SOP-1235'      
-                Frequency = 'Daily'
-                EmailIds = 'DevOpsDemo825@gmail.com'
+                DueDate = <DueDate>
+                StartDate = <StartDate>
+                ReviwerEmail = <ReviwerEmail>
+                ApproverEmail = <ApproverEmail>                
                 Activities = '1. Review of Privileged User Accounts,4. Review of Program Files and Configurations,8. Verify System is in the CMDB'
                 GitOrg='git@github.com:DnADevOps/'
                 GitCredentials='DevOpsDemo825'
@@ -22,16 +27,31 @@ pipeline {
       steps 
       {
         sh '''#!/bin/bash
-              echo " The System is ${SystemName}"
-              echo " The System is ${EnvironmentName}"              
-              echo " The Locations are ${Locations}"
-              echo " The SOPS are ${SOPS}"        
+              echo " The Maintenance is ${Maintenance}"
+              echo " The Platform is ${PlatformName}"
+              echo " ReRun = ${ReRun}"
+              echo " BuildNumber = ${BuildNumber}"
+              echo " The Environment is ${EnvironmentName}"                 
               echo " The Frequency is ${Frequency}"
-              echo " The EmailIds are ${EmailIds}"
+              echo " The Locations are ${Locations}"
+              echo " The SOPS are ${SOPS}"
+              echo " The Due Date are ${DueDate}"
+              echo " The Start Date are ${StartDate}"          
+              echo " The ReviewerEmail are ${ReviwerEmail}"
+              echo " The ApproverEmail are ${ApproverEmail}"
               echo " The Activities are ${Activities}"
-              
-              if [ -z "${SystemName}" ]; then
-                echo "Environment variable SystemName has not been set or passed"
+  
+              if [ -z "${Maintenance}" ]; then
+                echo "Environment variable Maintenance has not been set or passed"
+                exit 1
+              elif [ -z "${PlatformName}" ]; then
+                echo "Environment variable PlatformName has not been set or passed"
+                exit 1
+              elif [ -z "${ReRun}" ]; then
+                echo "Environment variable ReRun has not been set or passed"
+                exit 1
+              elif [ -z "${BuildNumber}" ]; then
+                echo "Environment variable BuildNumber has not been set or passed"
                 exit 1
               elif [ -z "${EnvironmentName}" ]; then
                 echo "Environment variable EnvironmentName has not been set or passed"
@@ -44,9 +64,18 @@ pipeline {
                 exit 1                
               elif [ -z "${Frequency}" ]; then
                 echo "Environment variable Frequency has not been set or passed"
+                exit 1                
+              elif [ -z "${DueDate}" ]; then
+                echo "Environment variable DueDate has not been set or passed"
+                exit 1                
+              elif [ -z "${StartDate}" ]; then
+                echo "Environment variable StartDate has not been set or passed"
                 exit 1 
-              elif [ -z "${EmailIds}" ]; then
-                echo "Environment variable EmailIds has not been set or passed"
+              elif [ -z "${ReviewerEmail}" ]; then
+                echo "Environment variable ReviewerEmail has not been set or passed"
+                exit 1 
+              elif [ -z "${ApproverEmail}" ]; then
+                echo "Environment variable ApproverEmail has not been set or passed"
                 exit 1 
               elif [ -z "${Activities}" ]; then
                 echo "Environment variable Activities has not been set or passed"
@@ -74,10 +103,10 @@ pipeline {
              script
              {
                activity_list = Activities.split(',')
-               echo "${SystemName}/${Maintenance}/${EnvironmentName}"             
+               echo "${PlatformName}/${Maintenance}/${EnvironmentName}"             
                activity_list.each() 
                { 
-                build job: "${SystemName}/${Maintenance}/${EnvironmentName}/${it}"; 
+                build job: "${PlatformName}/${Maintenance}/${EnvironmentName}/${it}"; 
                }
              }
            }
