@@ -4,16 +4,16 @@ pipeline {
 environment {
                 Maintenance = 'System_Maintenance'
                 PlatformName = 'Alteryx'
-                ReRun = <ReRun>
-                BuildNumber = BuildNumber>
+                ReRun = 'Yes'
+                BuildNumber = '121212'
                 EnvironmentName = 'dev'
                 Frequency = 'Daily'
                 Locations = 'Seattle WA,San Jose CA'
                 SOPS = 'SOP-1234,SOP-1235'      
-                DueDate = <DueDate>
-                StartDate = <StartDate>
-                ReviwerEmail = <ReviwerEmail>
-                ApproverEmail = <ApproverEmail>                
+                DueDate = '121221'
+                StartDate = '12122'
+                ReviewerEmail = 'DevOpsDemo825@gmail.com'
+                ApproverEmail = 'DevOpsDemo825@gmail.com'                
                 Activities = '1. Review of Privileged User Accounts,4. Review of Program Files and Configurations,8. Verify System is in the CMDB'
                 GitOrg='git@github.com:DnADevOps/'
                 GitCredentials='DevOpsDemo825'

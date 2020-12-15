@@ -6,7 +6,7 @@ environment {
                 PlatformName = 'Alteryx'
                 ReRun = 'Yes'
                 BuildNumber = '121212'
-                EnvironmentName = 'test'
+                EnvironmentName = 'qa'
                 Frequency = 'Daily'
                 Locations = 'Seattle WA,San Jose CA'
                 SOPS = 'SOP-1234,SOP-1235'      
