@@ -3,17 +3,18 @@ ArtifactoryUrl='http://54.160.21.79:8082/artifactory'
 ArtifactoryUser='admin'
 ArtifactoryPassword='Devops2020'
 Platform=''
+BuildNumber='131'
 
 cd /tmp
-if [ ! -d ${BUILD_NUMBER} ]
+if [ ! -d ${BuildNumber} ]
 then
- echo Directory /tmp/${BUILD_NUMBER} should exist
+ echo Directory /tmp/${BuildNumber} should exist
  exit 1
 fi
 
-echo Building archive ${BUILD_NUMBER}.zip
-zip -r ${BUILD_NUMBER}.zip ${BUILD_NUMBER}
+echo Building archive ${BuildNumber}.zip
+zip -r ${BuildNumber}.zip ${BuildNumber}
 
-echo Sending  archive ${BUILD_NUMBER}.zip to Artifactory
-echo curl -u "${ArtifactoryUser}":"${ArtifactoryPassword}" -X PUT "${ArtifactoryUrl}/${Platform}/${BUILD_NUMBER}.zip" -T ${BUILD_NUMBER}.zip
-curl -u "${ArtifactoryUser}":"${ArtifactoryPassword}" -X PUT "${ArtifactoryUrl}/${Platform}/${BUILD_NUMBER}.zip" -T ${BUILD_NUMBER}.zip
+echo Sending  archive ${BuildNumber}.zip to Artifactory
+echo curl -u "${ArtifactoryUser}":"${ArtifactoryPassword}" -X PUT "${ArtifactoryUrl}/${Platform}/${BuildNumber}.zip" -T ${BuildNumber}.zip
+curl -u "${ArtifactoryUser}":"${ArtifactoryPassword}" -X PUT "${ArtifactoryUrl}/${Platform}/${BuildNumber}.zip" -T ${BuildNumber}.zip

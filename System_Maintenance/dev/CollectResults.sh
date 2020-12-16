@@ -1,9 +1,10 @@
 #/bin/bash
 Maintenance='System_Maintenance'
-Environment=''
+Environment='dev'
+BuildNumber='131'
 
-echo Making directory /tmp/${BUILD_NUMBER}/${Maintenance}/${Environment} recursively
-mkdir /tmp/${BUILD_NUMBER}/${Maintenance}/${Environment}
+echo Making directory /tmp/${BuildNumber}/${Maintenance}/${Environment} recursively
+mkdir /tmp/${BuildNumber}/${Maintenance}/${Environment}
 
-echo Copying reports into directory /tmp/${BUILD_NUMBER}/${Maintenance}/${Environment}
-cp *.rpt /tmp/${BUILD_NUMBER}/${Maintenance}/${Environment}
+echo Copying reports into directory /tmp/${BuildNumber}/${Maintenance}/${Environment}
+cp *.rpt /tmp/${BuildNumber}/${Maintenance}/${Environment}
