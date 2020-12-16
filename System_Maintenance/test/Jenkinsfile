@@ -5,20 +5,20 @@ environment {
                 Maintenance = 'System_Maintenance'
                 PlatformName = 'Alteryx'
                 ReRun = 'Yes'
-                BuildNumber = '1121'
+                BuildNumber = '121212'
                 EnvironmentName = 'test'
                 Frequency = 'Daily'
                 Locations = 'Seattle WA,San Jose CA'
                 SOPS = 'SOP-1234,SOP-1235'      
-                DueDate = '1212'
-                StartDate = '1212'
+                DueDate = '121'
+                StartDate = '12122'
                 ReviewerEmail = 'DevOpsDemo825@gmail.com'
                 ApproverEmail = 'DevOpsDemo825@gmail.com'                
                 Activities = '1. Review of Privileged User Accounts,4. Review of Program Files and Configurations,8. Verify System is in the CMDB'
                 GitOrg='git@github.com:DnADevOps/'
                 GitCredentials='DevOpsDemo825'
                 GitBranch='main'                
-              }
+            }
     
   stages 
   {
@@ -107,26 +107,6 @@ environment {
                activity_list.each() 
                { 
                 build job: "${PlatformName}/${Maintenance}/${EnvironmentName}/${it}"; 
-                rtServer (
-                    id: 'Artifactory-1',
-                    url: 'http://54.160.21.79:8082//artifactory',
-                    username: 'admin',
-                    password: 'Devops2020',
-                    timeout: 300
-                )
-                rtUpload (
-                          serverId: 'Artifactory-1',
-                          spec: '''{
-                                    "files": [
-                                              {
-                                               "pattern": "$WORKSPACE/${Maintenance}/${EnvironmentName}/Activity[0-9]*_Results.rpt",
-                                               "target": "${PlatformName}/${env.BUILD_NUMBER}/"
-                                              }
-                                            ]
-                    }''',
-                    buildName: "holyFrog${env.BUILD_NUMBER}",
-                    buildNumber: "${env.BUILD_NUMBER}"
-                )
                }
              }
            }
