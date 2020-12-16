@@ -2,8 +2,8 @@
 ArtifactoryUrl='http://54.160.21.79:8082/artifactory'
 ArtifactoryUser='admin'
 ArtifactoryPassword='Devops2020'
-Platform=''
-BuildNumber='131'
+Platform='Alteryx'
+BuildNumber='132'
 
 cd /tmp
 if [ ! -d ${BuildNumber} ]
